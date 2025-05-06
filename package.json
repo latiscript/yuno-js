@@ -1,0 +1,7 @@
+{
+  "name": "yuno-js",
+  "version": "1.0.0",
+  "description": "Unofficial Yuno SDK for JavaScript",
+  "author": "Miguel Velasquez <miguelve.dev@gmail.com> (https://miguelvelasquez.dev)",
+  "license": "MIT"
+}

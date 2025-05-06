@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "dist/",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2015", "DOM"],
+    "preserveSymlinks": true,
+    "composite": true,
+    "paths": {
+      "@hooks/*": ["./src/hooks/*"],
+      "@context/*": ["./src/context/*"],
+      "@components/*": ["./src/components/*"]
+    }
+  },
+  "include": ["src/**/*", "../src/types.ts"],
+  "exclude": ["node_modules", "dist"]
+}
