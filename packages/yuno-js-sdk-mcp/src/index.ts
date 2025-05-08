@@ -14,5 +14,29 @@ server.tool("yuno-sdk-knowledgebase-retrieve", "Retrieve information from github
   };
 });
 
+server.tool("yuno-sdk-knowledgebase-retrieve", "Retrieve information from github react example", async () => {
+  const fullExample = await fetch(
+    "https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/examples/react-express/react/src/components/Full.tsx"
+  );
+
+  const fullImplementation = await fetch(
+    "https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/packages/yuno-react/src/components/full/Full.tsx"
+  );
+
+  const fullImplementationTypes = await fetch(
+    "https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/packages/yuno-react/src/components/full/types.ts"
+  );
+
+  const fullExampleText = await fullExample.text();
+  const fullImplementationText = await fullImplementation.text();
+  const fullImplementationTypesText = await fullImplementationTypes.text();
+  return {
+    content: [
+      { type: "text", text: fullExampleText },
+      { type: "text", text: fullImplementationText },
+      { type: "text", text: fullImplementationTypesText },
+    ],
+  };
+});
 const transport = new StdioServerTransport();
 await server.connect(transport);
