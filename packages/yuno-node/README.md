@@ -146,6 +146,9 @@ const payment = await yunoClient.payments.create(
   },
   "unique-idempotency-key",
 );
+
+// Retrieve a payment
+const payment = await yunoClient.payments.retrieve("payment-id");
 ```
 
 ## TypeScript Support

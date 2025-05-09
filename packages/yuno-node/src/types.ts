@@ -219,6 +219,131 @@ export type Checkout = {
   sdk_action_required?: boolean;
 };
 
+export type PaymentMethodData = {
+  vaulted_token: string;
+  type: string;
+  vault_on_success: boolean;
+  token: string;
+  detail?: {
+    redirect_url?: string;
+  };
+  payment_method_detail: {
+    wallet: {
+      verify: boolean;
+      capture: boolean;
+      installments: number;
+      installments_plan_id: string;
+      first_installment_deferral: number;
+      installments_type: string;
+      installment_amount: string;
+      soft_descriptor: string;
+      authorization_code: string;
+      retrieval_reference_number: string;
+      voucher: string;
+      card_data: {
+        holder_name: string;
+        iin: string;
+        lfd: string;
+        number_length: number;
+        security_code_length: number;
+        brand: string;
+        issuer_name: string;
+        issuer_code: string;
+        category: string;
+        type: string;
+        three_d_secure: {
+          version: string;
+          electronic_commerce_indicator: string;
+          cryptogram: string;
+          transaction_id: string;
+          directory_server_transaction_id: string;
+          pares_status: string;
+          acs_id: string;
+        };
+      };
+      stored_credentials: {
+        reason: string;
+        usage: string;
+        subscription_agreement_id: string;
+        network_transaction_id: string;
+      };
+      redirect_url: string;
+    };
+    card: {
+      verify: boolean;
+      capture: boolean;
+      installments: number;
+      installments_plan_id: string;
+      first_installment_deferral: number;
+      installments_type: string;
+      installment_amount: string;
+      soft_descriptor: string;
+      authorization_code: string;
+      retrieval_reference_number: string;
+      voucher: string;
+      card_data: {
+        holder_name: string;
+        iin: string;
+        lfd: string;
+        number_length: number;
+        security_code_length: number;
+        brand: string;
+        issuer_name: string;
+        issuer_code: string;
+        category: string;
+        type: string;
+        three_d_secure: {
+          version: string;
+          electronic_commerce_indicator: string;
+          cryptogram: string;
+          transaction_id: string;
+          directory_server_transaction_id: string;
+          pares_status: string;
+          acs_id: string;
+        };
+      };
+      stored_credentials: {
+        reason: string;
+        usage: string;
+        subscription_agreement_id: string;
+        network_transaction_id: string;
+      };
+    };
+  };
+}
+
+export type ProviderData = {
+  id: string;
+  transaction_id: string;
+  account_id: string;
+  status: string;
+  status_detail: string;
+  response_message: string;
+  iso8583_response_code: string;
+  iso8583_response_message: string;
+  raw_response: {
+    value: string;
+  }
+  third_party_transaction_id: string;
+}
+
+export type Transaction = {
+  id: string;
+  type: string;
+  status: string;
+  category: string;
+  amount: number;
+  provider_id: string;
+  response_code: string;
+  description: string;
+  merchant_reference: string | null
+  payment_method: PaymentMethodData;
+  provider_data: ProviderData;
+  three_d_secure_action_required: boolean | null;
+  created_at: Date;
+  updated_at: Date;
+};
+
 export type PaymentResponse = {
   id: string;
   account_id: string;
@@ -231,96 +356,6 @@ export type PaymentResponse = {
   updated_at: Date;
   amount: Amount;
   checkout: CheckoutSession;
-  payment_method: {
-    vaulted_token: string;
-    type: string;
-    vault_on_success: boolean;
-    token: string;
-    detail?: {
-      redirect_url?: string;
-    };
-    payment_method_detail: {
-      wallet: {
-        verify: boolean;
-        capture: boolean;
-        installments: number;
-        installments_plan_id: string;
-        first_installment_deferral: number;
-        installments_type: string;
-        installment_amount: string;
-        soft_descriptor: string;
-        authorization_code: string;
-        retrieval_reference_number: string;
-        voucher: string;
-        card_data: {
-          holder_name: string;
-          iin: string;
-          lfd: string;
-          number_length: number;
-          security_code_length: number;
-          brand: string;
-          issuer_name: string;
-          issuer_code: string;
-          category: string;
-          type: string;
-          three_d_secure: {
-            version: string;
-            electronic_commerce_indicator: string;
-            cryptogram: string;
-            transaction_id: string;
-            directory_server_transaction_id: string;
-            pares_status: string;
-            acs_id: string;
-          };
-        };
-        stored_credentials: {
-          reason: string;
-          usage: string;
-          subscription_agreement_id: string;
-          network_transaction_id: string;
-        };
-        redirect_url: string;
-      };
-      card: {
-        verify: boolean;
-        capture: boolean;
-        installments: number;
-        installments_plan_id: string;
-        first_installment_deferral: number;
-        installments_type: string;
-        installment_amount: string;
-        soft_descriptor: string;
-        authorization_code: string;
-        retrieval_reference_number: string;
-        voucher: string;
-        card_data: {
-          holder_name: string;
-          iin: string;
-          lfd: string;
-          number_length: number;
-          security_code_length: number;
-          brand: string;
-          issuer_name: string;
-          issuer_code: string;
-          category: string;
-          type: string;
-          three_d_secure: {
-            version: string;
-            electronic_commerce_indicator: string;
-            cryptogram: string;
-            transaction_id: string;
-            directory_server_transaction_id: string;
-            pares_status: string;
-            acs_id: string;
-          };
-        };
-        stored_credentials: {
-          reason: string;
-          usage: string;
-          subscription_agreement_id: string;
-          network_transaction_id: string;
-        };
-      };
-    };
-  };
+  payment_method: PaymentMethodData;
+  transactions?: Transaction[];
 };

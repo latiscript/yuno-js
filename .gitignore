@@ -1,0 +1,8 @@
+# Build directories
+dist/
+build/
+out/
+.next/
+.output/
+.cache/
+node_modules/

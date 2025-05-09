@@ -25,17 +25,20 @@ server.tool("yuno-sdk-retrieve-readme", "Retrieve information from github readme
   }
 });
 
-server.tool("yuno-sdk-retrieve-react-example", "Retrieve information from github react example", async () => {
+server.tool("yuno-sdk-retrieve-react-docs", "Retrieve information from github react example", async () => {
   try {
+    const readSDKReadme = await fetch("https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/packages/yuno-react/README.md");
     const fullExample = await fetch(
       "https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/examples/react-express/react/src/components/Full.tsx"
     );
 
-  const fullExampleText = await fullExample.text();
-  return {
-    content: [
-      { type: "text", text: fullExampleText },
-    ],
+    const readSDKReadmeText = await readSDKReadme.text();
+    const fullExampleText = await fullExample.text();
+    return {
+      content: [
+        { type: "text", text: readSDKReadmeText },
+        { type: "text", text: fullExampleText },
+      ],
     };
   } catch (error) {
     if (error instanceof Error) {

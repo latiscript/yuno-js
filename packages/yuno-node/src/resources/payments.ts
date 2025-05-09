@@ -1,4 +1,4 @@
-import { ApiKeys, PaymentInput, PaymentResponse, Settings } from "../types";
+import { ApiKeys, PaymentInput, PaymentResponse } from "../types";
 
 import { randomUUID } from "crypto";
 import { requestHandler } from "../internal/request-handler";
@@ -10,6 +10,7 @@ type PaymentsConfig = {
 export function handlePayments(config: PaymentsConfig) {
   return {
     create: createPayment(config.apiKeys),
+    retrieve: retrievePayment(config.apiKeys),
   };
 }
 
@@ -26,6 +27,16 @@ export function createPayment(apiKeys: ApiKeys) {
       apiKeys,
       body,
       idempotencyKey: idempotencyKey ?? randomUUID(),
+    });
+  };
+}
+
+export function retrievePayment(apiKeys: ApiKeys) {
+  return async function retrievePaymentInner(paymentId: string) {
+    return await requestHandler<PaymentResponse>({
+      path: `/v1/payments/${paymentId}`,
+      method: "GET",
+      apiKeys,
     });
   };
 }

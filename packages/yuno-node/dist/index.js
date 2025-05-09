@@ -89,7 +89,8 @@ function handleCustomerMethods(config) {
 
 function handlePayments(config) {
     return {
-        create: createPayment(config.apiKeys)
+        create: createPayment(config.apiKeys),
+        retrieve: retrievePayment(config.apiKeys)
     };
 }
 function createPayment(apiKeys) {
@@ -104,6 +105,15 @@ function createPayment(apiKeys) {
             apiKeys,
             body,
             idempotencyKey: idempotencyKey ?? crypto.randomUUID()
+        });
+    };
+}
+function retrievePayment(apiKeys) {
+    return async function retrievePaymentInner(paymentId) {
+        return await requestHandler({
+            path: `/v1/payments/${paymentId}`,
+            method: "GET",
+            apiKeys
         });
     };
 }
@@ -124,7 +134,7 @@ function initYunoClient(options) {
         throw new Error(`You must pass your Yuno's private secret key.`);
     }
     if (!isServer) {
-        throw new Error(`You're trying to use @yuno/node in a non-server environment. This is not supported by default.`);
+        throw new Error(`You're trying to use @yuno-js/node in a non-server environment. This is not supported by default.`);
     }
     const config = {
         apiKeys: options,

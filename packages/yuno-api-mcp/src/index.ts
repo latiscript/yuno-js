@@ -1,4 +1,4 @@
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { YunoClient } from "@yuno-js/node";
@@ -12,7 +12,6 @@ const server = new McpServer({
   version: "1.0.0",
 });
 
-// Add initialization tool
 server.tool(
   "initializeYuno",
   {
@@ -51,11 +50,10 @@ server.tool(
       email,
       country,
     });
-    return { content: [{ type: "text", text: customer.id }] };
+    return { content: [{ type: "text", text: `${JSON.stringify(customer, null, 4)}` }] };
   }
 );
 
-// Add an addition tool
 server.tool(
   "createCheckoutSession",
   { customer_id: z.string(), country: z.string(), amount: z.number() },
@@ -71,52 +69,149 @@ server.tool(
       country,
     });
     return {
-      content: [{ type: "text", text: checkoutSession.checkout_session }],
+      content: [{ type: "text", text: `${JSON.stringify(checkoutSession, null, 4)}` }],
     };
   }
 );
 
-server.tool("createPayment", { checkout_session_id: z.string().optional(), amount: z.number() }, async ({ checkout_session_id, amount }) => {
+server.tool("createPaymentWithOtt", 'with SDK_CHECKOUT workflow', { checkout_session_id: z.string(), amount: z.number(), ott: z.string() }, async ({ checkout_session_id, amount, ott }) => {
   try {
-    const payload = checkout_session_id
-      ? {
-          description: "Test payment",
-          merchant_order_id: "1234",
-          country: "CO",
-          amount: {
-            currency: "COP",
-            value: amount,
-          },
-          payment_method: {
-            type: "MERCADO_PAGO_CHECKOUT_PRO",
-          },
-          workflow: "REDIRECT",
-          checkout: {
-            session: checkout_session_id,
-          },
-        }
-      : {
-          description: "Test payment",
-          merchant_order_id: "1234",
-          country: "CO",
-          amount: {
-            currency: "COP",
-            value: amount,
-          },
-          payment_method: {
-            type: "MERCADO_PAGO_CHECKOUT_PRO",
-          },
-          workflow: "REDIRECT",
-        };
-
-    const payment = await yunoClient.payments.create(payload);
+    const payment = await yunoClient.payments.create({
+      description: "Test payment",
+      merchant_order_id: "1234",
+      country: "CO",
+      amount: {
+        currency: "COP",
+        value: amount,
+      },
+      payment_method: {
+        token: ott,
+      },
+      workflow: "SDK_CHECKOUT",
+      checkout: {
+        session: checkout_session_id,
+      },
+    });
     return {
       content: [
         {
           type: "text",
-          text: `this is the payment id: ${payment.id} and the redirect url: ${payment.payment_method.payment_method_detail.wallet.redirect_url}`,
+          text: `${JSON.stringify(payment, null, 4)}`,
         },
       ],
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        content: [{ type: "text", text: error.message }],
+      };
+    }
+    return {
+      content: [{ type: "text", text: "An unknown error occurred" }],
+    };
+  }
+});
+
+server.tool("createPaymentWithCheckoutSession", 'with REDIRECT workflow and checkout session id', { checkout_session_id: z.string(), amount: z.number(), payment_method: z.string() }, async ({ checkout_session_id, amount, payment_method }) => {
+  try {
+    const payment = await yunoClient.payments.create({
+      description: "Test payment",
+      country: "CO",
+      merchant_order_id: "1234",
+      amount: {
+      currency: "COP",
+      value: amount,
+    },
+    payment_method: {
+      type: payment_method,
+    },
+    workflow: "REDIRECT",
+    checkout: {
+      session: checkout_session_id,
+    },
+  })
+  return {
+    content: [
+      {
+        type: "text",
+        text: `${JSON.stringify(payment, null, 4)}`,
+      },
+    ],
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        content: [{ type: "text", text: error.message }],
+      };
+    }
+    return {
+      content: [{ type: "text", text: "An unknown error occurred" }],
+    };
+  }
+});
+
+server.tool("createPaymentWithoutCheckoutSession", 'with REDIRECT workflow and without checkout session id', { amount: z.number(), payment_method: z.string() }, async ({ amount, payment_method }) => {
+  try {
+    const payment = await yunoClient.payments.create({
+      description: "Test payment",
+      country: "CO",
+      merchant_order_id: "1234",
+      amount: {
+      currency: "COP",
+      value: amount,
+    },
+    payment_method: {
+      type: payment_method,
+    },
+    workflow: "REDIRECT",
+  });
+  return {
+    content: [
+      {
+        type: "text",
+        text: `${JSON.stringify(payment, null, 4)}`,
+      },
+    ],
+  };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        content: [{ type: "text", text: error.message }],
+      };
+    }
+    return {
+      content: [{ type: "text", text: "An unknown error occurred" }],
+    };
+  }
+});
+
+server.tool("retrievePayment", { payment_id: z.string() }, async ({ payment_id }) => {
+  try {
+    const payment = await yunoClient.payments.retrieve(payment_id);
+    return {
+      content: [{ type: "text", text: `${JSON.stringify(payment, null, 4)}` }],
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        content: [{ type: "text", text: error.message }],
+      };
+    }
+    return {
+      content: [{ type: "text", text: "An unknown error occurred" }],
+    };
+  }
+});
+
+server.tool("retrieveYunoNodeDocs", async () => {
+  try {
+    const yunoNodeDocs = await fetch("https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/packages/yuno-node/README.md");
+    const yunoNodeDocsText = await yunoNodeDocs.text();
+
+    const yunoNodeExample = await fetch("https://raw.githubusercontent.com/latiscript/yuno-js/refs/heads/main/examples/react-express/express/src/index.ts");
+    const yunoNodeExampleText = await yunoNodeExample.text();
+    return {
+      content: [{ type: "text", text: yunoNodeDocsText }, { type: "text", text: yunoNodeExampleText }],
     };
   } catch (error) {
     if (error instanceof Error) {
