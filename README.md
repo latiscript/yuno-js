@@ -6,7 +6,7 @@
 
 **This is _not_ an official Yuno repository.**
 
-This project is an open-source initiative, born in Latin America and aiming to empower developers all over the world with easy, modern, and AI-friendly tools to integrate [Yuno](https://y.uno/) payment solutions into their Node.js and React applications. We are passionate about making payment integration accessible, especially for the Latin American region, but contributions and usage are welcome from everywhere!
+This project is an open-source initiative, born in Latin America and aiming to empower developers all over the world with easy, modern, and AI-friendly tools to integrate [Yuno](https://y.uno/) payment solutions into their Node.js and React applications. It is built by a Yuno employee, but is not an official product—just a community-driven effort to make integration easier for everyone, especially in the Latin American region. Contributions and usage are welcome from everywhere!
 
 ## 🌎 About This Project
 
@@ -20,7 +20,7 @@ This project is an open-source initiative, born in Latin America and aiming to e
 
 ## 🚩 Why Unofficial?
 
-This project is not affiliated with or endorsed by Yuno. It is built by the community, for the community, using only public documentation and APIs. Our goal is to:
+This project is not affiliated with or endorsed by Yuno. It is built by the community (and by a Yuno employee in a personal capacity), using only public documentation and APIs. Our goal is to:
 
 - Fill gaps in the official SDK ecosystem
 - Provide rapid iteration and community-driven features
