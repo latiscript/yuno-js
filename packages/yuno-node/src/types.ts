@@ -34,11 +34,11 @@ type Customer = {
   first_name: string;
   last_name: string;
   email: string;
-  country: string;
+  country: string | undefined;
 };
 
 type Amount = {
-  currency: string;
+  currency: string | undefined;
   value: number;
 };
 
@@ -110,13 +110,22 @@ type PaymentMethodDetail = {
   wallet?: WalletDetail;
 };
 
-type PaymentMethod = {
-  token?: string;
-  vaulted_token?: string;
-  type?: string;
-  detail?: PaymentMethodDetail;
-  vault_on_success?: boolean;
-};
+export type Workflow = 'SDK_CHECKOUT' | 'DIRECT' | 'REDIRECT'
+
+type PaymentMethod<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'SDK_CHECKOUT'
+  ? {
+    token: string;
+    vaulted_token?: string;
+    type?: string;
+    detail?: PaymentMethodDetail;
+    vault_on_success?: boolean;
+  } : {
+    token?: string;
+    vaulted_token?: string;
+    type?: string;
+    detail?: PaymentMethodDetail;
+    vault_on_success?: boolean;
+  };
 
 export type CustomerInput = Customer & {
   merchant_customer_id?: string;
@@ -147,7 +156,7 @@ export type CheckoutSession = {
   customer_id?: string;
   merchant_order_id: string;
   payment_description: string;
-  country: string;
+  country: string | undefined;
   amount: Amount;
   sdk_action_required?: boolean;
 };
@@ -200,24 +209,39 @@ type Metadata = {
   value: string;
 };
 
-export type PaymentInput = {
+type PaymentInputBase = {
   description: string;
-  country: string;
+  country: string | undefined;
   merchant_order_id: string;
   amount: Amount;
   payment_method: PaymentMethod;
-  checkout?: Checkout;
-  workflow?: string;
   callback_url?: string;
   fraud_screening?: FraudScreening;
   split_marketplace?: SplitMarketplace[];
   metadata?: Metadata[];
 };
 
-export type Checkout = {
-  session: string;
-  sdk_action_required?: boolean;
-};
+export type PaymentInput =
+  | ({
+      workflow: 'SDK_CHECKOUT';
+      checkout: Checkout<'SDK_CHECKOUT'>;
+    } & PaymentInputBase)
+  | ({
+      workflow?: Exclude<Workflow, 'SDK_CHECKOUT'>;
+      checkout?: Checkout<Exclude<Workflow, 'SDK_CHECKOUT'>>;
+    } & PaymentInputBase);
+
+
+
+export type Checkout<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'SDK_CHECKOUT'
+  ? {
+      session: string;
+      sdk_action_required?: boolean;
+    }
+  : {
+      session?: string;
+      sdk_action_required?: boolean;
+  };
 
 export type PaymentMethodData = {
   vaulted_token: string;
