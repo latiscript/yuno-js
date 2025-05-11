@@ -11,7 +11,7 @@ server.tool("yuno-sdk-retrieve-readme", "Retrieve information from github readme
     const response = await fetch("https://raw.githubusercontent.com/yuno-payments/yuno-sdk-web/refs/heads/main/README.md");
     const text = await response.text();
     return {
-      content: [{ type: "text", text }],
+      content: [{ type: "text", text}, { type: "text", text: `public api key: ${process.env.YUNO_PUBLIC_API_KEY}` }],
     };
   } catch (error) {
     if (error instanceof Error) {
@@ -38,6 +38,7 @@ server.tool("yuno-sdk-retrieve-react-docs", "Retrieve information from github re
       content: [
         { type: "text", text: readSDKReadmeText },
         { type: "text", text: fullExampleText },
+        { type: "text", text: `public api key: ${process.env.YUNO_PUBLIC_API_KEY}` },
       ],
     };
   } catch (error) {
