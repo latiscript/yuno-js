@@ -1,8 +1,8 @@
 "use server";
 
-import type { CheckoutSessionInput, CustomerInput } from "@yuno-js/node";
+import type { CheckoutSessionInput, CustomerInput } from "@latiscript/yuno-node";
 
-import { PaymentInput } from "@yuno-js/node";
+import { PaymentInput } from "@latiscript/yuno-node";
 import { yunoClient } from "@/utils/yuno";
 
 export async function createYunoCustomer(customer: CustomerInput) {
