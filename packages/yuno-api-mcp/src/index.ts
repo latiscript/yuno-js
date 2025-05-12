@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { YunoClient } from "@yuno-js/node";
+import { YunoClient } from "@latiscript/yuno-node";
 import { env } from "process";
 import { z } from "zod";
 import { randomUUID } from "node:crypto";

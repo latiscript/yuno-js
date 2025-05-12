@@ -1,5 +1,5 @@
 {
-  "name": "@latiscript/yuno-js-sdk-mcp",
+  "name": "yuno-js-sdk-mcp",
   "version": "1.0.0",
   "type": "module",
   "bin": {

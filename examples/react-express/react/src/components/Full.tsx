@@ -1,7 +1,7 @@
-import { PayButton, Full as YunoFull } from "@yuno-js/react";
+import { PayButton, Full as YunoFull } from "@latiscript/yuno-react";
 import { useEffect, useState } from "react";
 
-import { useYuno } from "@yuno-js/react";
+import { useYuno } from "@latiscript/yuno-react";
 
 export default function Full() {
   const { yuno, isLoading } = useYuno();

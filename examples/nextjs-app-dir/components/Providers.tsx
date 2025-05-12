@@ -1,6 +1,6 @@
 "use client";
 
-import { YunoProvider } from "@yuno-js/react";
+import { YunoProvider } from "@latiscript/yuno-react";
 
 export default function Providers({ children }: { children: any }) {
   return (

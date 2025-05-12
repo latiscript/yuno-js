@@ -4,7 +4,7 @@ import type {
   CheckoutSessionInput,
   CustomerInput,
   PaymentInput,
-} from "@yuno-js/node";
+} from "@latiscript/yuno-node";
 
 import cors from "cors";
 import express from "express";

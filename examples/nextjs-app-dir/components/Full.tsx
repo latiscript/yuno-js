@@ -1,10 +1,10 @@
 "use client";
 
-import { PayButton, Full as YunoFull } from "@yuno-js/react";
+import { PayButton, Full as YunoFull } from "@latiscript/yuno-react";
 import { createYunoCheckoutSession, createYunoPayment } from "@/app/actions";
 import { useEffect, useState } from "react";
 
-import { useYuno } from "@yuno-js/react";
+import { useYuno } from "@latiscript/yuno-react";
 
 export default function Full() {
   const [checkoutSession, setCheckoutSession] = useState<string | null>(null);

@@ -1,5 +1,5 @@
 import Full from "./components/Full";
-import { YunoProvider } from "@yuno-js/react";
+import { YunoProvider } from "@latiscript/yuno-react";
 
 function App() {
   return (

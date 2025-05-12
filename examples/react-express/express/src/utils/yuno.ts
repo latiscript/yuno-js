@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { YunoClient } from "@yuno-js/node";
+import { YunoClient } from "@latiscript/yuno-node";
 
 export const yunoClient = YunoClient.initialize({
   accountCode: process.env.ACCOUNT_CODE!,
