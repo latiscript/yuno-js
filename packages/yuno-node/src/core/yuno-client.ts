@@ -29,7 +29,7 @@ function initYunoClient(options: YunoClientOptions) {
   }
 
   if (!isServer) {
-    throw new Error(`You're trying to use @yuno-js/node in a non-server environment. This is not supported by default.`);
+    throw new Error(`You're trying to use @latiscript/yuno-node in a non-server environment. This is not supported by default.`);
   }
 
   const config = {
