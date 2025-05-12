@@ -1,4 +1,4 @@
-# @yuno-js/react
+# @latiscript/yuno-react
 
 > ⚠️ **DISCLAIMER**: This is NOT the official Yuno SDK. This is an unofficial React wrapper for the Yuno payment platform. For the official SDK and support, please visit [Yuno's official documentation](https://docs.yuno.com).
 
@@ -24,16 +24,16 @@ Choose your preferred package manager:
 
 ```bash
 # Using npm
-npm install @yuno-js/react
+npm install @latiscript/yuno-react
 
 # Using Yarn
-yarn add @yuno-js/react
+yarn add @latiscript/yuno-react
 
 # Using pnpm
-pnpm add @yuno-js/react
+pnpm add @latiscript/yuno-react
 ```
 
-> Note: For backend integration, you can use our unofficial Node.js SDK (`@yuno-js/node`).
+> Note: For backend integration, you can use our unofficial Node.js SDK (`@latiscript/yuno-node`).
 
 ## Configuration
 
@@ -52,7 +52,7 @@ VITE_PUBLIC_API_KEY=your_yuno_public_api_key_here
 Wrap your application with the `YunoProvider` at the root level:
 
 ```tsx
-import { YunoProvider } from "@yuno-js/react";
+import { YunoProvider } from "@latiscript/yuno-react";
 
 function App() {
   return (
@@ -74,7 +74,7 @@ export default App;
 The `Full` component provides a complete checkout experience:
 
 ```tsx
-import { Full, useYuno } from "@yuno-js/react";
+import { Full, useYuno } from "@latiscript/yuno-react";
 
 export default function CheckoutComponent() {
   const { yuno, isLoading } = useYuno();
@@ -120,7 +120,7 @@ export default function CheckoutComponent() {
 For a more compact checkout experience, use the `Lite` component:
 
 ```tsx
-import { Lite, useYuno } from "@yuno-js/react";
+import { Lite, useYuno } from "@latiscript/yuno-react";
 
 export default function LiteCheckoutComponent() {
   const { yuno, isLoading } = useYuno();
@@ -190,4 +190,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-For issues, bugs, or feature requests, please [open an issue](https://github.com/yourusername/yuno/issues) in our GitHub repository. For official Yuno support, please visit [Yuno's official documentation](https://docs.yuno.com).
+For issues, bugs, or feature requests, please [open an issue](https://github.com/latiscript/yuno-js/issues) in our GitHub repository. For official Yuno support, please visit [Yuno's official documentation](https://docs.yuno.com).

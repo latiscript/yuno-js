@@ -36,10 +36,10 @@ This project is not affiliated with or endorsed by Yuno. It is built by the comm
 
 ## 📦 Packages
 
-- [`@yuno-js/node`](./packages/yuno-node): Node.js SDK for Yuno
-- [`@yuno-js/react`](./packages/yuno-react): React SDK for Yuno
-- [`yuno-api-mcp`](./packages/yuno-api-mcp): MCP server exposing Yuno API as tools
-- [`yuno-js-sdk-mcp`](./packages/yuno-js-sdk-mcp): MCP server for the Yuno web SDK
+- [`@latiscript/yuno-node`](./packages/yuno-node): Node.js SDK for Yuno
+- [`@latiscript/yuno-react`](./packages/yuno-react): React SDK for Yuno
+- [`@latiscript/yuno-api-mcp`](./packages/yuno-api-mcp): MCP server exposing Yuno API as tools
+- [`@latiscript/yuno-js-sdk-mcp`](./packages/yuno-js-sdk-mcp): MCP server for the Yuno web SDK
 
 ## 🚀 Quick Start
 
@@ -47,10 +47,10 @@ This project is not affiliated with or endorsed by Yuno. It is built by the comm
 
 ```bash
 # For Node.js
-npm install @yuno-js/node
+npm install @latiscript/yuno-node
 
 # For React
-npm install @yuno-js/react
+npm install @latiscript/yuno-react
 ```
 
 ### 2. Use in Your Project
@@ -58,7 +58,7 @@ npm install @yuno-js/react
 #### Node.js Example
 
 ```js
-import { YunoClient } from '@yuno-js/node';
+import { YunoClient } from '@latiscript/yuno-node';
 
 const yuno = YunoClient.initialize({
   accountCode: process.env.ACCOUNT_CODE,
@@ -76,7 +76,7 @@ const customer = await yuno.customers.create({
 #### React Example
 
 ```jsx
-import { YunoProvider, Full } from '@yuno-js/react';
+import { YunoProvider, Full } from '@latiscript/yuno-react';
 
 function App() {
   return (
@@ -98,8 +98,8 @@ We **welcome contributions** from everyone! Whether you are from Latin America o
 ## 📚 Documentation
 
 - [Official Yuno Docs](https://docs.y.uno/)
-- [@yuno-js/node README](./packages/yuno-node/README.md)
-- [@yuno-js/react README](./packages/yuno-react/README.md)
+- [@latiscript/yuno-node README](./packages/yuno-node/README.md)
+- [@latiscript/yuno-react README](./packages/yuno-react/README.md)
 
 ## 🛡️ License
 

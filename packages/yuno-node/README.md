@@ -1,4 +1,4 @@
-# @yuno-js/node
+# @latiscript/yuno-node
 
 > Node.js SDK for Yuno payment platform integration
 
@@ -22,13 +22,13 @@ A Node.js SDK that provides a simple and efficient way to integrate Yuno's payme
 
 ```bash
 # npm
-npm install @yuno-js/node
+npm install @latiscript/yuno-node
 
 # Yarn
-yarn add @yuno-js/node
+yarn add @latiscript/yuno-node
 
 # pnpm
-pnpm add @yuno-js/node
+pnpm add @latiscript/yuno-node
 ```
 
 ## Configuration
@@ -50,7 +50,7 @@ PRIVATE_SECRET_KEY=your_private_secret_key
 ```ts
 // utils/yuno.ts
 import "dotenv/config";
-import { YunoClient } from "@yuno-js/node";
+import { YunoClient } from "@latiscript/yuno-node";
 
 export const yunoClient = YunoClient.initialize({
   accountCode: process.env.ACCOUNT_CODE,
@@ -70,7 +70,7 @@ import type {
   CheckoutSessionInput,
   CustomerInput,
   PaymentInput,
-} from "@yuno-js/node";
+} from "@latiscript/yuno-node";
 import "dotenv/config";
 import { yunoClient } from "./utils/yuno";
 
