@@ -1,7 +1,7 @@
 import { ApiKeys, CustomerInput, CustomerResponse, Settings } from "../types";
 
-import { nanoid } from "nanoid";
 import { requestHandler } from "../internal/request-handler";
+import { randomUUID } from "node:crypto";
 
 type CustomerConfig = {
   apiKeys: ApiKeys;
@@ -26,7 +26,7 @@ function createCustomer(
   return async function createCustomerInner(customer: CustomerInput) {
     const body = {
       ...customer,
-      merchant_customer_id: customer.merchant_customer_id ?? nanoid(),
+      merchant_customer_id: customer.merchant_customer_id ?? randomUUID(),
       country_code: customer.country ?? settings.countryCode,
     };
 

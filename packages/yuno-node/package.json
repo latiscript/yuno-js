@@ -17,9 +17,6 @@
   "scripts": {
     "build": "bunchee"
   },
-  "dependencies": {
-    "nanoid": "5.0.1"
-  },
   "devDependencies": {
     "@types/node": "20.8.4",
     "bunchee": "6.5.0",
