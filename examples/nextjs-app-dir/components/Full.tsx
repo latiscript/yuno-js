@@ -20,7 +20,7 @@ export default function Full() {
           currency: "COP",
           value: 20000,
         },
-        callback_url: "http://localhost:3000",
+        callback_url: "https://demo.y.uno",
       });
       setCheckoutSession(checkoutSession.checkout_session);
     })();

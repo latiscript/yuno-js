@@ -22,7 +22,7 @@ export default function Full() {
           },
           body: JSON.stringify({
             merchant_order_id: "order_123",
-            callback_url: "http://localhost:5173",
+            callback_url: "https://demo.y.uno",
             payment_description: "test",
             country: "CO",
             amount: {
