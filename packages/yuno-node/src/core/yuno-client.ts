@@ -2,6 +2,8 @@ import { handleCheckoutSessionMethods } from "../resources/checkout-sessions";
 import { handleCustomerMethods } from "../resources/customers";
 import { handlePayments } from "../resources/payments";
 import { isServer } from "../internal/utils";
+import { handlePayouts } from "../resources/payouts";
+import { handlePaymentLinks } from "../resources/payment-links";
 
 export type YunoClientOptions = {
   accountCode: string;
@@ -44,5 +46,7 @@ function initYunoClient(options: YunoClientOptions) {
     customers: handleCustomerMethods(config),
     checkoutSessions: handleCheckoutSessionMethods(config),
     payments: handlePayments(config),
+    payouts: handlePayouts(config),
+    paymentLinks: handlePaymentLinks(config),
   };
 }

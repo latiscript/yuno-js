@@ -1,7 +1,7 @@
-import { ApiKeys, CustomerInput, CustomerResponse, Settings } from "../types";
-
-import { requestHandler } from "../internal/request-handler";
+import { requestHandler } from "../../internal/request-handler";
 import { randomUUID } from "node:crypto";
+import type { ApiKeys } from "../../types";
+import { CustomerInput, CustomerResponse } from "./types";
 
 type CustomerConfig = {
   apiKeys: ApiKeys;
@@ -13,6 +13,7 @@ type CustomerConfig = {
 export function handleCustomerMethods(config: CustomerConfig) {
   return {
     create: createCustomer(config.apiKeys, config.settings),
+    retrieve: retrieveCustomer(config.apiKeys),
   };
 }
 
@@ -35,6 +36,18 @@ function createCustomer(
       method: "POST",
       apiKeys,
       body,
+    });
+  };
+}
+
+function retrieveCustomer(
+  apiKeys: ApiKeys,
+) {
+  return async function retrieveCustomer(customerId: string) {
+    return await requestHandler<CustomerResponse>({
+      path: `/v1/customers/${customerId}`,
+      method: "GET",
+      apiKeys,
     });
   };
 }

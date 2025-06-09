@@ -1,48 +1,50 @@
-type Nullable<T extends {}> = {
+export type Nullable<T extends {}> = {
   [K in keyof T]: T[K] | null;
 };
 
-type Document = {
+export type Document = {
   document_type: string;
   document_number: string;
 };
 
-type Phone = {
+export type Phone = {
   number: string;
   country_code: string;
 };
 
-type BillingAddress = {
+export type BillingAddress = {
   address_line_1: string;
   address_line_2: string;
   country: string;
   state: string;
   city: string;
   zip_code: string;
+  neighborhood: string;
 };
 
-type ShippingAddress = {
+export type ShippingAddress = {
   address_line_1: string;
   address_line_2: string;
   country: string;
   state: string;
   city: string;
   zip_code: string;
+  neighborhood: string;
 };
 
-type Customer = {
+export type Customer = {
   first_name: string;
   last_name: string;
   email: string;
   country: string | undefined;
 };
 
-type Amount = {
+export type Amount = {
   currency: string | undefined;
   value: number;
 };
 
-type CardData = {
+export type CardData = {
   number: string;
   expiration_month: number;
   expiration_year: number;
@@ -51,7 +53,7 @@ type CardData = {
   type?: string;
 };
 
-type TokenData = {
+export type TokenData = {
   number: string;
   holder_name?: string;
   expiration_month: number;
@@ -61,11 +63,11 @@ type TokenData = {
   token_requestor_id?: string;
 };
 
-type NetworkToken = {
+export type NetworkToken = {
   token_data: TokenData;
 };
 
-type ThreeDSecure = {
+export type ThreeDSecure = {
   three_d_secure_setup_id?: string;
   version?: string;
   electronic_commerce_indicator?: string;
@@ -74,14 +76,14 @@ type ThreeDSecure = {
   directory_server_transaction_id?: string;
 };
 
-type StoredCredentials = {
+export type StoredCredentials = {
   reason: string;
   usage: string;
   stored_credentials_id: string;
   network_transaction_id: string;
 };
 
-type CardDetail = {
+export type CardDetail = {
   capture?: boolean;
   installments?: number;
   first_installment_deferral?: number;
@@ -93,26 +95,42 @@ type CardDetail = {
   stored_credentials?: StoredCredentials;
 };
 
-type TicketDetail = {
+export type TicketDetail = {
   benefit_type: string;
   ticket_number: string;
   ticket_provider: string;
   ticket_url: string;
 };
 
-type WalletDetail = {
+export type WalletDetail = {
   cryptogram: string;
 };
 
-type PaymentMethodDetail = {
+export type PaymentMethodDetail = {
   card?: CardDetail;
   ticket?: TicketDetail;
   wallet?: WalletDetail;
 };
 
+export type CustomerPayer = {
+  id?: string;
+  merchant_customer_id?: string;
+  first_name?: string;
+  last_name?: string;
+  gender?: string;
+  date_of_birth?: string;
+  email?: string;
+  nationality?: string;
+  document?: Document;
+  phone?: Phone;
+  billing_address?: BillingAddress;
+  shipping_address?: ShippingAddress;
+  ip_address?: string;
+}
+
 export type Workflow = 'SDK_CHECKOUT' | 'DIRECT' | 'REDIRECT'
 
-type PaymentMethod<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'SDK_CHECKOUT'
+export type PaymentMethod<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'SDK_CHECKOUT'
   ? {
     token: string;
     vaulted_token?: string;
@@ -127,31 +145,6 @@ type PaymentMethod<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'S
     vault_on_success?: boolean;
   };
 
-export type CustomerInput = Customer & {
-  merchant_customer_id?: string;
-  gender?: string;
-  date_of_birth?: string;
-  nationality?: string;
-  document?: Partial<Document>;
-  phone?: Partial<Phone>;
-  billing_address?: Partial<BillingAddress>;
-  shipping_address?: Partial<ShippingAddress>;
-};
-
-export type CustomerResponse = Customer & {
-  id: string;
-  merchant_customer_id: string;
-  gender: string | null;
-  date_of_birth: string | null;
-  nationality: string | null;
-  document: Nullable<Document> | null;
-  phone: Nullable<Phone> | null;
-  billing_address: Nullable<BillingAddress> | null;
-  shipping_address: Nullable<ShippingAddress> | null;
-  created_at: string;
-  updated_at: string;
-};
-
 export type CheckoutSession = {
   customer_id?: string;
   merchant_order_id: string;
@@ -159,19 +152,6 @@ export type CheckoutSession = {
   country: string | undefined;
   amount: Amount;
   sdk_action_required?: boolean;
-};
-
-export type CheckoutSessionInput = CheckoutSession & {
-  callback_url?: string;
-  metadata?: any;
-};
-
-export type CheckoutSessionResponse = CheckoutSession & {
-  callback_url: string | null;
-  checkout_session: string;
-  created_at: Date;
-  metadata: any;
-  workflow: string;
 };
 
 export type ApiKeys = {
@@ -186,16 +166,16 @@ export type Settings = {
   idempotencyKey?: string;
 };
 
-type FraudScreening = {
+export type FraudScreening = {
   stand_alone?: boolean;
 };
 
-type Liability = {
+export type Liability = {
   processing_fee: string;
   chargebacks: boolean;
 };
 
-type SplitMarketplace = {
+export type SplitMarketplace = {
   recipient_id: string;
   provider_recipient_id: string;
   type: string;
@@ -204,34 +184,10 @@ type SplitMarketplace = {
   liability: Liability;
 };
 
-type Metadata = {
+export type Metadata = {
   key: string;
   value: string;
 };
-
-type PaymentInputBase = {
-  description: string;
-  country: string | undefined;
-  merchant_order_id: string;
-  amount: Amount;
-  payment_method: PaymentMethod;
-  callback_url?: string;
-  fraud_screening?: FraudScreening;
-  split_marketplace?: SplitMarketplace[];
-  metadata?: Metadata[];
-};
-
-export type PaymentInput =
-  | ({
-      workflow: 'SDK_CHECKOUT';
-      checkout: Checkout<'SDK_CHECKOUT'>;
-    } & PaymentInputBase)
-  | ({
-      workflow?: Exclude<Workflow, 'SDK_CHECKOUT'>;
-      checkout?: Checkout<Exclude<Workflow, 'SDK_CHECKOUT'>>;
-    } & PaymentInputBase);
-
-
 
 export type Checkout<TWorkflow extends Workflow = Workflow> = TWorkflow extends 'SDK_CHECKOUT'
   ? {
@@ -366,20 +322,4 @@ export type Transaction = {
   three_d_secure_action_required: boolean | null;
   created_at: Date;
   updated_at: Date;
-};
-
-export type PaymentResponse = {
-  id: string;
-  account_id: string;
-  description: string;
-  country: string;
-  status: string;
-  sub_status: string;
-  merchant_order_id: string;
-  created_at: Date;
-  updated_at: Date;
-  amount: Amount;
-  checkout: CheckoutSession;
-  payment_method: PaymentMethodData;
-  transactions?: Transaction[];
 };
