@@ -6,7 +6,7 @@
 
 **This is _not_ an official Yuno repository.**
 
-This project is an open-source initiative, born in Latin America and aiming to empower developers all over the world with easy, modern, and AI-friendly tools to integrate [Yuno](https://y.uno/) payment solutions into their Node.js and React applications. It is built by a Yuno employee, but is not an official product—just a community-driven effort to make integration easier for everyone, especially in the Latin American region. Contributions and usage are welcome from everywhere!
+This project is an open-source initiative, born in Latin America and aiming to empower developers all over the world with easy, modern tools to integrate [Yuno](https://y.uno/) payment solutions into their Node.js and React applications. It is built by a Yuno employee, but is not an official product—just a community-driven effort to make integration easier for everyone, especially in the Latin American region. Contributions and usage are welcome from everywhere!
 
 ## 🌎 About This Project
 
@@ -15,7 +15,6 @@ This project is an open-source initiative, born in Latin America and aiming to e
 - Simplify integration with Yuno in both Node.js and React projects
 - Provide a developer-friendly, TypeScript-first experience
 - Offer tools and examples for both backend and frontend
-- Leverage [Model Context Protocol (MCP)](https://modelcontextprotocol.org/) for AI and [Cursor](https://www.cursor.so/) workflows
 - Encourage global and especially Latin American collaboration
 
 ## 🚩 Why Unofficial?
@@ -24,22 +23,21 @@ This project is not affiliated with or endorsed by Yuno. It is built by the comm
 
 - Fill gaps in the official SDK ecosystem
 - Provide rapid iteration and community-driven features
-- Make it easier to use Yuno with modern frameworks and AI tools
+- Make it easier to use Yuno with modern frameworks
 
 ## ✨ Features
 
-- **Node.js SDK**: Easy backend integration for payments, customers, and checkout sessions
+- **Node.js SDK**: Easy backend integration for payments, customers, checkout sessions, and payouts
 - **React SDK**: Plug-and-play components for seamless checkout experiences
-- **MCP Tools**: Expose Yuno APIs as [MCP](https://modelcontextprotocol.org/) tools for use with AI agents and [Cursor](https://www.cursor.so/)
 - **TypeScript Support**: Full type safety and autocompletion
 - **Latin American Focus**: Designed and tested with regional needs in mind, but works globally
 
 ## 📦 Packages
 
-- [`@latiscript/yuno-node`](./packages/yuno-node): Node.js SDK for Yuno
+- [`@latiscript/yuno-node`](./packages/yuno-node): Node.js SDK for Yuno (payments, customers, checkout sessions, payouts)
 - [`@latiscript/yuno-react`](./packages/yuno-react): React SDK for Yuno
-- [`@latiscript/yuno-api-mcp`](./packages/yuno-api-mcp): MCP server exposing Yuno API as tools
-- [`@latiscript/yuno-js-sdk-mcp`](./packages/yuno-js-sdk-mcp): MCP server for the Yuno web SDK
+- [`@latiscript/yuno-api-mcp`](./packages/yuno-api-mcp): (Legacy) MCP server exposing Yuno API as tools
+- [`@latiscript/yuno-js-sdk-mcp`](./packages/yuno-js-sdk-mcp): (Legacy) MCP server for the Yuno web SDK
 
 ## 🚀 Quick Start
 
@@ -64,6 +62,9 @@ const yuno = YunoClient.initialize({
   accountCode: process.env.ACCOUNT_CODE,
   publicApiKey: process.env.PUBLIC_API_KEY,
   privateSecretKey: process.env.PRIVATE_SECRET_KEY,
+  // Optional:
+  // countryCode: 'CO',
+  // currency: 'COP',
 });
 
 // Create a customer
@@ -87,13 +88,12 @@ function App() {
 }
 ```
 
-### 3. Use with MCP & AI
-
-You can run the MCP servers in `packages/yuno-api-mcp` or `packages/yuno-js-sdk-mcp` to expose Yuno as tools for AI agents and [Cursor](https://www.cursor.so/). This enables programmatic payment flows, customer creation, and more, directly from AI workflows.
-
 ## 🤝 Contributing
 
-We **welcome contributions** from everyone! Whether you are from Latin America or anywhere else, your ideas, bug reports, and pull requests are appreciated. Just open an issue or PR and let's build together.
+We **welcome contributions** from everyone! Whether you are from Latin America or anywhere else, your ideas, bug reports, and pull requests are appreciated. Please see [`CONTRIBUTING.md`](./packages/yuno-node/CONTRIBUTING.md) for guidelines. Just open an issue or PR and let's build together.
+
+- Search [existing issues](https://github.com/latiscript/yuno-js/issues) before opening a new one.
+- For questions, open an issue or start a discussion on GitHub.
 
 ## 📚 Documentation
 
