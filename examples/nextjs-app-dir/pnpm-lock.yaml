@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.1
         version: 1.1.0
       '@latiscript/yuno-react':
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: 1.0.3
+        version: 1.0.3
       next:
         specifier: 13.5.4
         version: 13.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -123,8 +123,8 @@ packages:
   '@latiscript/yuno-node@1.1.0':
     resolution: {integrity: sha512-TuOPxSaOFa9jLnnQrOCGLEah99Ez1Lmkdsfca19D2+9Ek+O34OretgL9WKpzw9s28VHFM0r2t6gWb35ZcFSuYQ==}
 
-  '@latiscript/yuno-react@1.0.2':
-    resolution: {integrity: sha512-gT5O0ljMD6AfUizuy/fyNJAhSzI+8PAXYEZSe4mxhpn+Y0jNpcwwTr9SWNwC3pp065oUeQZxd6h26Y3s7KXfOQ==}
+  '@latiscript/yuno-react@1.0.3':
+    resolution: {integrity: sha512-aKuuWDNlvu+QgeCfVQYf4YMpsntOJe8mv5qmItEVrMhnApJunRyXiGA6uwQ02t/8lLO1VXH/Q6tV1X8froFgOw==}
 
   '@napi-rs/wasm-runtime@0.2.11':
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
@@ -1848,7 +1848,7 @@ snapshots:
 
   '@latiscript/yuno-node@1.1.0': {}
 
-  '@latiscript/yuno-react@1.0.2':
+  '@latiscript/yuno-react@1.0.3':
     dependencies:
       '@yuno-payments/sdk-web': 1.1.0
       '@yuno-payments/sdk-web-types': 2.0.0
@@ -2451,7 +2451,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.5(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.1)
@@ -2481,7 +2481,7 @@ snapshots:
       tinyglobby: 0.2.14
       unrs-resolver: 1.9.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -2496,7 +2496,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
