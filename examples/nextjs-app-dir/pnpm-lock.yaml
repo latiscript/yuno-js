@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.1
         version: 1.1.0
       '@latiscript/yuno-react':
-        specifier: 1.0.3
-        version: 1.0.3
+        specifier: 1.0.5
+        version: 1.0.5
       next:
         specifier: 13.5.4
         version: 13.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -123,8 +123,8 @@ packages:
   '@latiscript/yuno-node@1.1.0':
     resolution: {integrity: sha512-TuOPxSaOFa9jLnnQrOCGLEah99Ez1Lmkdsfca19D2+9Ek+O34OretgL9WKpzw9s28VHFM0r2t6gWb35ZcFSuYQ==}
 
-  '@latiscript/yuno-react@1.0.3':
-    resolution: {integrity: sha512-aKuuWDNlvu+QgeCfVQYf4YMpsntOJe8mv5qmItEVrMhnApJunRyXiGA6uwQ02t/8lLO1VXH/Q6tV1X8froFgOw==}
+  '@latiscript/yuno-react@1.0.5':
+    resolution: {integrity: sha512-KuM7cAxH6+IvEU4SiPuAK4hYpi7n2bsphZVDV413VYfCYXBWKDG87pxV0wN5K9JqzxwOBh5thOPCzzay8q+Bzw==}
 
   '@napi-rs/wasm-runtime@0.2.11':
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
@@ -367,11 +367,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@yuno-payments/sdk-web-types@2.0.0':
-    resolution: {integrity: sha512-T+m4Lvz3RL7WWhTP5W7TSVBgAIKjGqkalr0TcJnhTJcXizkTukusVj5ncoWxospweGJZIyPg0HGViDXxbw+zvg==}
+  '@yuno-payments/sdk-web-types@3.3.0':
+    resolution: {integrity: sha512-XCpBCkdEOpMNuRW+3xSALpJqi7M+g+OSQnjpKp1QcysNo4MouWHnjLQT4nSlSkCBwRffa2NcJw6OwoQVhgaobQ==}
 
-  '@yuno-payments/sdk-web@1.1.0':
-    resolution: {integrity: sha512-G0fgjjQzmV8+Jqf1vszU46GZRODjVrctCklYscprSPBYi2Rhc4YrevL+cVqhfSJxqF0WyDyFt3+THITZdykByQ==}
+  '@yuno-payments/sdk-web@1.2.0':
+    resolution: {integrity: sha512-UWZIgW+UGpy25krsMxGgyJH0PJBlVGjtuFcOqKVJep1alVlVj0Gqw/r7CsebOCIb/XB6x9qG0X+vxHqViULvIQ==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1848,10 +1848,10 @@ snapshots:
 
   '@latiscript/yuno-node@1.1.0': {}
 
-  '@latiscript/yuno-react@1.0.3':
+  '@latiscript/yuno-react@1.0.5':
     dependencies:
-      '@yuno-payments/sdk-web': 1.1.0
-      '@yuno-payments/sdk-web-types': 2.0.0
+      '@yuno-payments/sdk-web': 1.2.0
+      '@yuno-payments/sdk-web-types': 3.3.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
@@ -2043,11 +2043,11 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.9.2':
     optional: true
 
-  '@yuno-payments/sdk-web-types@2.0.0': {}
+  '@yuno-payments/sdk-web-types@3.3.0': {}
 
-  '@yuno-payments/sdk-web@1.1.0':
+  '@yuno-payments/sdk-web@1.2.0':
     dependencies:
-      '@yuno-payments/sdk-web-types': 2.0.0
+      '@yuno-payments/sdk-web-types': 3.3.0
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:

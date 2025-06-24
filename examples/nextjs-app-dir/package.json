@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@latiscript/yuno-node": "^1.0.1",
-    "@latiscript/yuno-react": "1.0.3",
+    "@latiscript/yuno-react": "1.0.5",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18"
